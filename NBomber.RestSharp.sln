@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBomber.RestSharp", "src\NBomber.RestSharp\NBomber.RestSharp.csproj", "{CEDFFCAF-D96B-4C5E-84BA-D7DAADB7F8D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "examples\Demo\Demo.csproj", "{B4967A7C-4713-4E94-9903-8AEB4940C093}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{CEDFFCAF-D96B-4C5E-84BA-D7DAADB7F8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEDFFCAF-D96B-4C5E-84BA-D7DAADB7F8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEDFFCAF-D96B-4C5E-84BA-D7DAADB7F8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4967A7C-4713-4E94-9903-8AEB4940C093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4967A7C-4713-4E94-9903-8AEB4940C093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4967A7C-4713-4E94-9903-8AEB4940C093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4967A7C-4713-4E94-9903-8AEB4940C093}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4967A7C-4713-4E94-9903-8AEB4940C093} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F9D7DD2-DB06-44CB-AECC-2A3875144D92}
