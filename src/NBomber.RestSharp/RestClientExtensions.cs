@@ -39,6 +39,76 @@ public static class RestClientExtensions
             return Response.Fail(payload: payload, sizeBytes: sizeBytes);
     }
 
+    public static async Task<Response<RestResponse>> SendGet(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Get;
+
+        return await Send(client, request);
+    }
+
+    public static async Task<Response<TResponse>> SendGet<TResponse>(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Get;
+
+        return await Send<TResponse>(client, request);
+    }
+
+    public static async Task<Response<RestResponse>> SendPost(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Post;
+
+        return await Send(client, request);
+    }
+
+    public static async Task<Response<TResponse>> SendPost<TResponse>(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Post;
+
+        return await Send<TResponse>(client, request);
+    }
+
+    public static async Task<Response<RestResponse>> SendPut(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Put;
+
+        return await Send(client, request);
+    }
+
+    public static async Task<Response<TResponse>> SendPut<TResponse>(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Put;
+
+        return await Send<TResponse>(client, request);
+    }
+
+    public static async Task<Response<RestResponse>> SendPatch(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Patch;
+
+        return await Send(client, request);
+    }
+
+    public static async Task<Response<TResponse>> SendPatch<TResponse>(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Patch;
+
+        return await Send<TResponse>(client, request);
+    }
+
+    public static async Task<Response<RestResponse>> SendDelete(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Delete;
+
+        return await Send(client, request);
+    }
+
+    public static async Task<Response<TResponse>> SendDelete<TResponse>(this RestClient client, RestRequest request)
+    {
+        request.Method = Method.Delete;
+
+        return await Send<TResponse>(client, request);
+    }
+
     private static long GetRequestSize(RestRequest request)
     {
         var sizeBytes = 0;
