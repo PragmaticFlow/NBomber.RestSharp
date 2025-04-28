@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using NBomber;
 using NBomber.CSharp;
 using NBomber.RestSharp;
 
@@ -12,10 +13,11 @@ public class RestSharpTest
         // For this example, you'll need to start the HttpApiSimulator, which is located in the examples/simulators solution folder.
         // Make sure it’s running before executing the client tests to ensure proper communication.
 
+        var clientPool = new ClientPool<RestClient>();
+
         var scenario = Scenario.Create("restsharp_scenario", async ctx =>
         {
-            var options = new RestClientOptions("http://localhost:5099");
-            var client = new RestClient(options);
+            var client = clientPool.GetClient(ctx.ScenarioInfo);
             var request = new RestRequest("/api/pingpong/");
 
             return await client.Send(request);
@@ -23,7 +25,21 @@ public class RestSharpTest
         .WithWarmUpDuration(TimeSpan.FromSeconds(5))
         .WithLoadSimulations(
             Simulation.KeepConstant(1, TimeSpan.FromSeconds(5))
-        );
+        )
+        .WithInit(async context =>
+        {
+            for (var i = 0; i < 100; i++)
+            {
+                var options = new RestClientOptions("http://localhost:5099");
+                var client = new RestClient(options);
+                clientPool.AddClient(client);
+            }
+        })
+        .WithClean(ctx =>
+        {
+            clientPool.DisposeClients(client => client.Dispose());
+            return Task.CompletedTask;
+        });
 
         var stats = NBomberRunner
             .RegisterScenarios(scenario)
