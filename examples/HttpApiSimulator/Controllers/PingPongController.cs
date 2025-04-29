@@ -16,7 +16,7 @@ public class PingPongController : ControllerBase
     public IActionResult PutMessage() => Ok("Put");
 
     [HttpPatch]
-    public IActionResult PatchMessage()=> Ok("Patch");
+    public IActionResult PatchMessage() => Ok("Patch");
 
     [HttpDelete]
     public IActionResult DeleteMessage() => Ok("Delete");
