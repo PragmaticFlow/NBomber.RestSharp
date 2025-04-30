@@ -17,7 +17,7 @@ public static class RestClientExtensions
 
     /// <summary>
     /// Sends an asynchronous HTTP request using the specified <see cref="RestRequest"/>,
-    /// then evaluates the response and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// then evaluates the response and wraps it in a <c>Response&lt;RestResponse&gt;</c> object, including size and latency metrics.
     /// </summary>
     public static async Task<Response<RestResponse>> Send(this RestClient client, RestRequest request)
     {
@@ -51,7 +51,7 @@ public static class RestClientExtensions
 
     /// <summary>
     /// Sends an asynchronous HTTP GET request using the specified <see cref="RestRequest"/>, 
-    /// then evaluates the response and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// then evaluates the response and wraps it in a <c>Response&lt;RestResponse&gt;</c> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>GET</c>.
     /// </summary>
@@ -78,7 +78,7 @@ public static class RestClientExtensions
 
     /// <summary>
     /// Sends an asynchronous HTTP POST request using the specified <see cref="RestRequest"/>, 
-    /// then evaluates the response and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// then evaluates the response and wraps it in a <c>Response&lt;RestResponse&gt;</c> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>POST</c>.
     /// </summary>
@@ -105,7 +105,7 @@ public static class RestClientExtensions
 
     /// <summary>
     /// Sends an asynchronous HTTP PUT request using the specified <see cref="RestRequest"/>, 
-    /// then evaluates the response and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// then evaluates the response and wraps it in a <c>Response&lt;RestResponse&gt;</c> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PUT</c>.
     /// </summary>
@@ -119,7 +119,7 @@ public static class RestClientExtensions
     /// <summary>
     /// Sends an asynchronous HTTP PUT request using the specified <see cref="RestRequest"/>, 
     /// deserializes the JSON response content into a specified type, then evaluates the response 
-    /// and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// and wraps it in a <see cref="Response{T}"/> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PUT</c>.
     /// </summary>
@@ -132,7 +132,7 @@ public static class RestClientExtensions
 
     /// <summary>
     /// Sends an asynchronous HTTP PATCH request using the specified <see cref="RestRequest"/>, 
-    /// then evaluates the response and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// then evaluates the response and wraps it in a <c>Response&lt;RestResponse&gt;</c> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PATCH</c>.
     /// </summary>
@@ -146,7 +146,7 @@ public static class RestClientExtensions
     /// <summary>
     /// Sends an asynchronous HTTP PATCH request using the specified <see cref="RestRequest"/>, 
     /// deserializes the JSON response content into a specified type, then evaluates the response 
-    /// and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// and wraps it in a <see cref="Response{T}"/> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PATCH</c>.
     /// </summary>
@@ -159,7 +159,7 @@ public static class RestClientExtensions
 
     /// <summary>
     /// Sends an asynchronous HTTP DELETE request using the specified <see cref="RestRequest"/>, 
-    /// then evaluates the response and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// then evaluates the response and wraps it in a <c>Response&lt;RestResponse&gt;</c> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>DELETE</c>.
     /// </summary>
@@ -173,7 +173,7 @@ public static class RestClientExtensions
     /// <summary>
     /// Sends an asynchronous HTTP DELETE request using the specified <see cref="RestRequest"/>, 
     /// deserializes the JSON response content into a specified type, then evaluates the response 
-    /// and wraps it in a <see cref="Response{RestResponse}"/> object, including size and latency metrics.
+    /// and wraps it in a <see cref="Response{T}"/> object, including size and latency metrics.
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>DELETE</c>.
     /// </summary>
