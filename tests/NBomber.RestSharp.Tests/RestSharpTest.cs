@@ -70,7 +70,7 @@ public class RestSharpTest
 
             return Response.Ok();
         })
-        .WithoutWarmUp()
+        .WithWarmUpDuration(TimeSpan.FromSeconds(5))
         .WithLoadSimulations(
             Simulation.KeepConstant(10, TimeSpan.FromSeconds(5))
         );
