@@ -39,9 +39,9 @@ public static class RestClientExtensions
     {
         var response = await client.ExecuteAsync(request);
         var sizeBytes = GetRequestSize(request, client.Options.BaseUrl.Authority) + GetResponseSize(response);
-
-        JsonSerializerOptions options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-        TResponse payload = JsonSerializer.Deserialize<TResponse>(response.Content, options);
+        
+        var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+        var payload = JsonSerializer.Deserialize<TResponse>(response.Content, options);
 
         if (response.IsSuccessStatusCode)
             return Response.Ok(payload: payload, sizeBytes: sizeBytes);
@@ -55,11 +55,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>GET</c>.
     /// </summary>
-    public static async Task<Response<RestResponse>> SendGet(this RestClient client, RestRequest request)
+    public static Task<Response<RestResponse>> SendGet(this RestClient client, RestRequest request)
     {
         request.Method = Method.Get;
-
-        return await Send(client, request);
+        return Send(client, request);
     }
 
     /// <summary>
@@ -69,11 +68,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>GET</c>.
     /// </summary>
-    public static async Task<Response<TResponse>> SendGet<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendGet<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Get;
-
-        return await Send<TResponse>(client, request);
+        return Send<TResponse>(client, request);
     }
 
     /// <summary>
@@ -82,11 +80,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>POST</c>.
     /// </summary>
-    public static async Task<Response<RestResponse>> SendPost(this RestClient client, RestRequest request)
+    public static Task<Response<RestResponse>> SendPost(this RestClient client, RestRequest request)
     {
         request.Method = Method.Post;
-
-        return await Send(client, request);
+        return Send(client, request);
     }
 
     /// <summary>
@@ -96,11 +93,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>POST</c>.
     /// </summary>
-    public static async Task<Response<TResponse>> SendPost<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendPost<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Post;
-
-        return await Send<TResponse>(client, request);
+        return Send<TResponse>(client, request);
     }
 
     /// <summary>
@@ -109,11 +105,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PUT</c>.
     /// </summary>
-    public static async Task<Response<RestResponse>> SendPut(this RestClient client, RestRequest request)
+    public static Task<Response<RestResponse>> SendPut(this RestClient client, RestRequest request)
     {
         request.Method = Method.Put;
-
-        return await Send(client, request);
+        return Send(client, request);
     }
 
     /// <summary>
@@ -123,11 +118,11 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PUT</c>.
     /// </summary>
-    public static async Task<Response<TResponse>> SendPut<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendPut<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Put;
 
-        return await Send<TResponse>(client, request);
+        return Send<TResponse>(client, request);
     }
 
     /// <summary>
@@ -136,11 +131,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PATCH</c>.
     /// </summary>
-    public static async Task<Response<RestResponse>> SendPatch(this RestClient client, RestRequest request)
+    public static Task<Response<RestResponse>> SendPatch(this RestClient client, RestRequest request)
     {
         request.Method = Method.Patch;
-
-        return await Send(client, request);
+        return Send(client, request);
     }
 
     /// <summary>
@@ -150,11 +144,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PATCH</c>.
     /// </summary>
-    public static async Task<Response<TResponse>> SendPatch<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendPatch<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Patch;
-
-        return await Send<TResponse>(client, request);
+        return Send<TResponse>(client, request);
     }
 
     /// <summary>
@@ -163,11 +156,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>DELETE</c>.
     /// </summary>
-    public static async Task<Response<RestResponse>> SendDelete(this RestClient client, RestRequest request)
+    public static Task<Response<RestResponse>> SendDelete(this RestClient client, RestRequest request)
     {
         request.Method = Method.Delete;
-
-        return await Send(client, request);
+        return Send(client, request);
     }
 
     /// <summary>
@@ -177,11 +169,10 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>DELETE</c>.
     /// </summary>
-    public static async Task<Response<TResponse>> SendDelete<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendDelete<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Delete;
-
-        return await Send<TResponse>(client, request);
+        return Send<TResponse>(client, request);
     }
 
     private static long GetRequestSize(RestRequest request, string host)

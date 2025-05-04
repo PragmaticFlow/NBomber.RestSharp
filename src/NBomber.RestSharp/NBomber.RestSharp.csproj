@@ -1,9 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <Version>0.1.0-beta.0</Version>
+    <Company>NBomber</Company>
+    <Copyright>NBomber@2025</Copyright>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>nbomber_icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/PragmaticFlow/NBomber.RestSharp</RepositoryUrl>
+    <PackageTags>restsharp, load-testing, performance-testing, integration-testing</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>NBomber plugin for writing HTTP scenarios with RestSharp client</Description>
+    <Title>NBomber.RestSharp</Title>
   </PropertyGroup>
 
   <ItemGroup>
