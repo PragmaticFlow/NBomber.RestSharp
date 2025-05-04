@@ -18,7 +18,7 @@ public class RestSharpTest
             var client = new RestClient(options);
             var request = new RestRequest("/api/pingpong/");
 
-            var getStep = Step.Run("get", ctx, async () =>
+            var getStep = await Step.Run("get", ctx, async () =>
             {
                 var response = await client.SendGet(request);
 
@@ -28,7 +28,7 @@ public class RestSharpTest
                 return response;
             });
 
-            var postStep = Step.Run("post", ctx, async () =>
+            var postStep = await Step.Run("post", ctx, async () =>
             {
                 var response = await client.SendPost(request);
 
@@ -38,7 +38,7 @@ public class RestSharpTest
                 return response;
             });
 
-            var putStep = Step.Run("put", ctx, async () =>
+            var putStep = await Step.Run("put", ctx, async () =>
             {
                 var response = await client.SendPut(request);
 
@@ -48,7 +48,7 @@ public class RestSharpTest
                 return response;
             });
 
-            var patchStep = Step.Run("patch", ctx, async () =>
+            var patchStep = await Step.Run("patch", ctx, async () =>
             {
                 var response = await client.SendPatch(request);
 
@@ -58,7 +58,7 @@ public class RestSharpTest
                 return response;
             });
 
-            var deleteStep = Step.Run("delete", ctx, async () =>
+            var deleteStep = await Step.Run("delete", ctx, async () =>
             {
                 var response = await client.SendDelete(request);
 
@@ -70,9 +70,9 @@ public class RestSharpTest
 
             return Response.Ok();
         })
-        .WithWarmUpDuration(TimeSpan.FromSeconds(5))
+        .WithWarmUpDuration(TimeSpan.FromSeconds(2))
         .WithLoadSimulations(
-            Simulation.KeepConstant(10, TimeSpan.FromSeconds(5))
+            Simulation.KeepConstant(1, TimeSpan.FromSeconds(2))
         );
 
         var stats = NBomberRunner
