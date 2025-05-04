@@ -1,7 +1,7 @@
 services:
   
-  http-simulator:    
-    image: http-simulator
+  http-simulator:
+    container_name: http-simulator 
     build:
       dockerfile: Dockerfile
     ports:
