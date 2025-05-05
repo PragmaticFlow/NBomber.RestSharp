@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using System.Text;
+﻿using System.Text;
 using RestSharp;
 using NBomber.Contracts;
 using NBomber.CSharp;
@@ -39,9 +38,8 @@ public static class RestClientExtensions
     {
         var response = await client.ExecuteAsync(request);
         var sizeBytes = GetRequestSize(request, client.Options.BaseUrl.Authority) + GetResponseSize(response);
-        
-        var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-        var payload = JsonSerializer.Deserialize<TResponse>(response.Content, options);
+
+        var payload = client.Serializers.DeserializeContent<TResponse>(response);
 
         if (response.IsSuccessStatusCode)
             return Response.Ok(payload: payload, sizeBytes: sizeBytes);
