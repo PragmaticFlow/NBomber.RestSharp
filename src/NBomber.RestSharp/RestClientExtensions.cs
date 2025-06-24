@@ -7,12 +7,12 @@ namespace NBomber.RestSharp;
 
 public static class RestClientExtensions
 {
-    static readonly int HeaderSeparatorLength = 2;
-    static readonly int CrlfLength = 2;
-    static readonly int SpaceLength = 1;
-    static readonly int HttpVersionHeaderLength = 8;
-    static readonly int HostHeaderLength = 4;
-    static readonly int StatusCodeLength = 3;
+    const int HeaderSeparatorLength = 2; // symbol `: `
+    const int CrlfLength = 2; // \r\n
+    const int SpaceLength = 1;
+    const int HttpVersionHeaderLength = 8;
+    const int HostHeaderLength = 4;
+    const int StatusCodeLength = 3;
 
     /// <summary>
     /// Sends an asynchronous HTTP request using the specified <see cref="RestRequest"/>,
@@ -119,7 +119,6 @@ public static class RestClientExtensions
     public static Task<Response<TResponse>> SendPut<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Put;
-
         return Send<TResponse>(client, request);
     }
 
