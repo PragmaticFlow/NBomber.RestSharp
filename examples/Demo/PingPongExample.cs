@@ -11,12 +11,12 @@ public class PingPongExample
         // For this example, you'll need to start the HttpApiSimulator, which is located in the examples/simulators solution folder.
         // Make sure it’s running before executing the client tests to ensure proper communication.
 
+        var options = new RestClientOptions("http://localhost:5099");
+        var client = new RestClient(options);
+
         var scenario = Scenario.Create("restsharp_scenario", async ctx =>
         {
-            var options = new RestClientOptions("http://localhost:5099");
-            var client = new RestClient(options);
             var request = new RestRequest("/api/pingpong/");
-
             return await client.Send(request);
         })
         .WithoutWarmUp()
