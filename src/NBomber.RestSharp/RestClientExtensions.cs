@@ -75,8 +75,8 @@ public static class RestClientExtensions
         var sizeBytes = reqSize + resSize;
 
         return response.IsSuccessStatusCode 
-            ? Response.Ok(payload: response, sizeBytes: sizeBytes) 
-            : Response.Fail(payload: response, sizeBytes: sizeBytes);
+            ? Response.Ok(statusCode: response.StatusCode.ToString(), payload: response, sizeBytes: sizeBytes) 
+            : Response.Fail(statusCode: response.StatusCode.ToString(), payload: response, sizeBytes: sizeBytes);
     }
 
     /// <summary>
@@ -94,8 +94,8 @@ public static class RestClientExtensions
         var payload = client.Serializers.DeserializeContent<TResponse>(response);
 
         return response.IsSuccessStatusCode 
-            ? Response.Ok(payload: payload, sizeBytes: sizeBytes) 
-            : Response.Fail(payload: payload, sizeBytes: sizeBytes);
+            ? Response.Ok(statusCode: response.StatusCode.ToString(), payload: payload, sizeBytes: sizeBytes) 
+            : Response.Fail(statusCode: response.StatusCode.ToString(), payload: payload, sizeBytes: sizeBytes);
     }
 
     /// <summary>
