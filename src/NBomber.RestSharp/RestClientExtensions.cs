@@ -21,6 +21,7 @@ public static class RestClientBuilder
     /// <param name="configureSerialization">
     /// Optional delegate to configure custom serialization behavior for the <see cref="RestClient"/>.
     /// </param>
+    /// <param name="maxConnectionsPerServer">Defines the maximum number of outbound connections which will be established per endpoint. The default value: 5000.</param>
     /// <returns>
     /// A new instance of <see cref="RestClient"/> configured with connection pooling, timeout, and serialization options.
     /// </returns>
@@ -28,17 +29,18 @@ public static class RestClientBuilder
     /// The internal <see cref="SocketsHttpHandler"/> is configured with:
     /// - <c>PooledConnectionLifetime</c>: 10 minutes
     /// - <c>PooledConnectionIdleTimeout</c>: 5 minutes
-    /// - <c>MaxConnectionsPerServer</c>: int.MaxValue
+    /// - <c>MaxConnectionsPerServer</c>: 5000
     /// </remarks>
     public static RestClient CreateDefaultClient(
         RestClientOptions? options = null, 
         bool disposeHttpClient = false,
-        ConfigureSerialization? configureSerialization = null)
+        ConfigureSerialization? configureSerialization = null,
+        int maxConnectionsPerServer = 5000)
     {
         var socketsHandler = new SocketsHttpHandler();
         socketsHandler.PooledConnectionLifetime = TimeSpan.FromMinutes(10.0);
         socketsHandler.PooledConnectionIdleTimeout = TimeSpan.FromMinutes(5.0);
-        socketsHandler.MaxConnectionsPerServer = int.MaxValue;
+        socketsHandler.MaxConnectionsPerServer = maxConnectionsPerServer;
         
         var http = new HttpClient(socketsHandler);
 
