@@ -10,6 +10,7 @@ public static class RestClientBuilder
 {
     /// <summary>
     /// Creates and configures a default <see cref="RestClient"/> instance with a preconfigured <see cref="SocketsHttpHandler"/>.
+    /// The client will be configured with <c>MaxConnectionsPerServer</c>: 5000 and a <c>Timeout</c>: 1 minute.
     /// </summary>
     /// <param name="options">
     /// Optional <see cref="RestClientOptions"/> to configure base URL, timeout, headers, etc. If null, default options are used.
@@ -25,12 +26,6 @@ public static class RestClientBuilder
     /// <returns>
     /// A new instance of <see cref="RestClient"/> configured with connection pooling, timeout, and serialization options.
     /// </returns>
-    /// <remarks>
-    /// The internal <see cref="SocketsHttpHandler"/> is configured with:
-    /// - <c>PooledConnectionLifetime</c>: 10 minutes
-    /// - <c>PooledConnectionIdleTimeout</c>: 5 minutes
-    /// - <c>MaxConnectionsPerServer</c>: 5000
-    /// </remarks>
     public static RestClient CreateDefaultClient(
         RestClientOptions? options = null, 
         bool disposeHttpClient = false,
@@ -38,11 +33,12 @@ public static class RestClientBuilder
         int maxConnectionsPerServer = 5000)
     {
         var socketsHandler = new SocketsHttpHandler();
-        socketsHandler.PooledConnectionLifetime = TimeSpan.FromMinutes(10.0);
-        socketsHandler.PooledConnectionIdleTimeout = TimeSpan.FromMinutes(5.0);
+        socketsHandler.PooledConnectionLifetime = TimeSpan.FromMinutes(10);
+        socketsHandler.PooledConnectionIdleTimeout = TimeSpan.FromMinutes(5);
         socketsHandler.MaxConnectionsPerServer = maxConnectionsPerServer;
         
         var http = new HttpClient(socketsHandler);
+        http.Timeout = TimeSpan.FromMinutes(1);
 
         return new RestClient(http, options, disposeHttpClient, configureSerialization);
     }
