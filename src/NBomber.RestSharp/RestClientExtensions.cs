@@ -6,6 +6,9 @@ using RestSharp.Serializers;
 
 namespace NBomber.RestSharp;
 
+/// <summary>
+/// Provides helper methods for creating <see cref="RestClient"/> instances.
+/// </summary>
 public static class RestClientBuilder
 {
     /// <summary>
@@ -27,9 +30,9 @@ public static class RestClientBuilder
     /// A new instance of <see cref="RestClient"/> configured with connection pooling, timeout, and serialization options.
     /// </returns>
     public static RestClient CreateDefaultClient(
-        RestClientOptions? options = null, 
+        RestClientOptions options = null, 
         bool disposeHttpClient = false,
-        ConfigureSerialization? configureSerialization = null,
+        ConfigureSerialization configureSerialization = null,
         int maxConnectionsPerServer = 5000)
     {
         var socketsHandler = new SocketsHttpHandler();
@@ -44,6 +47,9 @@ public static class RestClientBuilder
     }
 }
 
+/// <summary>
+/// Provides helper methods for sending requests and handling responses.
+/// </summary>
 public static class RestClientExtensions
 {
     const int HeaderSeparatorLength = 2; // symbol `: `
@@ -80,7 +86,7 @@ public static class RestClientExtensions
     /// deserializes the JSON response content into a specified type, then evaluates the response and wraps it
     /// in a custom <see cref="Response{T}"/> object, including size and latency metrics.
     /// </summary>
-    public static async Task<Response<TResponse?>> Send<TResponse>(this RestClient client, RestRequest request)
+    public static async Task<Response<TResponse>> Send<TResponse>(this RestClient client, RestRequest request)
     {
         var response = await client.ExecuteAsync(request);
         var reqSize = CalcRequestSize(client, request);
@@ -113,7 +119,7 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>GET</c>.
     /// </summary>
-    public static Task<Response<TResponse?>> SendGet<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendGet<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Get;
         return Send<TResponse>(client, request);
@@ -138,7 +144,7 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>POST</c>.
     /// </summary>
-    public static Task<Response<TResponse?>> SendPost<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendPost<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Post;
         return Send<TResponse>(client, request);
@@ -163,7 +169,7 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PUT</c>.
     /// </summary>
-    public static Task<Response<TResponse?>> SendPut<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendPut<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Put;
         return Send<TResponse>(client, request);
@@ -188,7 +194,7 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>PATCH</c>.
     /// </summary>
-    public static Task<Response<TResponse?>> SendPatch<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendPatch<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Patch;
         return Send<TResponse>(client, request);
@@ -213,7 +219,7 @@ public static class RestClientExtensions
     /// <para />
     /// The <see cref="RestRequest.Method"/> will be overwritten with <c>DELETE</c>.
     /// </summary>
-    public static Task<Response<TResponse?>> SendDelete<TResponse>(this RestClient client, RestRequest request)
+    public static Task<Response<TResponse>> SendDelete<TResponse>(this RestClient client, RestRequest request)
     {
         request.Method = Method.Delete;
         return Send<TResponse>(client, request);

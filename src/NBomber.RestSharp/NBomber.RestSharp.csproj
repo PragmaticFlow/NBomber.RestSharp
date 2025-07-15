@@ -4,8 +4,8 @@
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Version>0.1.0-beta.5</Version>
+    <Nullable>disable</Nullable>
+    <Version>0.1.0-beta.6</Version>
     <Company>NBomber</Company>
     <Copyright>NBomber@2025</Copyright>
     <IncludeSymbols>true</IncludeSymbols>
@@ -15,6 +15,7 @@
     <RepositoryUrl>https://github.com/PragmaticFlow/NBomber.RestSharp</RepositoryUrl>
     <PackageTags>restsharp, load-testing, performance-testing, integration-testing</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>NBomber plugin for writing HTTP scenarios with RestSharp client</Description>
     <Title>NBomber.RestSharp</Title>
   </PropertyGroup>
