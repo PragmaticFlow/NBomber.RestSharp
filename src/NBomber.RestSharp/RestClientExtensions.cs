@@ -6,6 +6,7 @@ using RestSharp.Serializers;
 
 namespace NBomber.RestSharp;
 
+#if NET8_0_OR_GREATER
 /// <summary>
 /// Provides helper methods for creating <see cref="RestClient"/> instances.
 /// </summary>
@@ -46,6 +47,7 @@ public static class RestClientBuilder
         return new RestClient(http, options, disposeHttpClient, configureSerialization);
     }
 }
+#endif
 
 /// <summary>
 /// Provides helper methods for sending requests and handling responses.
