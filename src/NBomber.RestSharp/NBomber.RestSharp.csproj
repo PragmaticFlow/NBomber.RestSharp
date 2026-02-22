@@ -35,7 +35,7 @@
   
   <ItemGroup>
     <PackageReference Include="NBomber.Contracts" Version="6.1.0" />
-    <PackageReference Include="RestSharp" Version="112.1.0" />
+    <PackageReference Include="RestSharp" Version="113.1.0" />
   </ItemGroup>
 
 </Project>
