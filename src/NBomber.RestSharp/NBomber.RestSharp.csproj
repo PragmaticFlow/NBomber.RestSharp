@@ -5,7 +5,7 @@
     <LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Company>NBomber</Company>
     <Copyright>NBomber@2026</Copyright>
     <IncludeSymbols>true</IncludeSymbols>
